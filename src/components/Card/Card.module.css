@@ -1,0 +1,38 @@
+.card {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.cardLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cardPicture {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.cardPicture img {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    border-radius: 5px 5px 0 0;
+}
+
+.cardContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: .25em 1em;
+    box-sizing: border-box;
+}

@@ -1,27 +1,27 @@
 import { API_KEY } from "../constants/config";
 
-export const MovieAPI = () => {
-    const fetchPopularShows = async () => {
+export class MovieAPI {
+    static fetchPopularShows = async () => {
         const response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`);
-        const results = await response.json();
-        return results.results();
+        const data = await response.json();
+        return data.results;
     }
 
-    const fetchRecommendationsByShowId = async (id: string) => {
+    static fetchRecommendationsByShowId = async (id: string) => {
         const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${API_KEY}`);
-        const results = await response.json();
-        return results.results();
+        const data = await response.json();
+        return data.results;
     }
 
-    const fetchShowById = async (id: string) => {
+    static fetchShowById = async (id: string) => {
         const response = await fetch(`https://api.themoviedb.org/3/tv/${id}&?api_key=${API_KEY}&append_to_response=credits`);
-        const results = await response.json();
-        return results.results();
+        const data = await response.json();
+        return data.results;
     }
 
-    const fetchShowByTitle = async (title: string) => {
+    static fetchShowByTitle = async (title: string) => {
         const response = await fetch(`https://api.themoviedb.org/3/search/tv$?api_key=${API_KEY}&query=${title}`);
-        const results = await response.json();
-        return results.results();
+        const data = await response.json();
+        return data.results;
     }
 };
