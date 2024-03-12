@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MovieAPI } from '../../api/movie-api';
 import { ROUTES } from '../../routes/routes';
 import { Show } from '../../types/show';
 import s from './Card.module.css';
@@ -16,6 +15,11 @@ export const Card = ({data}: {data: Show}) => {
     //     return `${}`
     // }
 
+    const getBackgroundPicture = (show: Show) => {
+        if (!show.backdrop_path) return '';
+        return `https://image.tmdb.org/t/p/original/${show.backdrop_path}`;
+    }
+
     const renderCard = () => {
         if (!show) return (
             <div className={s.card}>No card content!</div>
@@ -23,9 +27,9 @@ export const Card = ({data}: {data: Show}) => {
 
         return (
             <div className={s.card}>
-                <Link to={`${ROUTES.showDetail}/${show.id}`} className={s.cardLink}>
+                <Link to={`/${ROUTES.showDetail}/${show.id}`} className={s.cardLink}>
                     <div className={s.cardPicture}>
-                        <img src={`https://image.tmdb.org/t/p/original/${show.backdrop_path}`}></img>
+                        <img src={getBackgroundPicture(show)}></img>
                     </div>
                     <div className={s.cardContent}>
                         { show?.name }
