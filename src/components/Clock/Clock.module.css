@@ -1,0 +1,11 @@
+.clock {
+    height: 100%;
+    padding: .25em 1em;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

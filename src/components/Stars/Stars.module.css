@@ -1,0 +1,26 @@
+.starsWrapper {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.star {
+    display: block;
+    width: 1em;
+    font-size: 2em;
+    position: relative;
+}
+
+.starFront {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+}
+
+.rating {
+    margin-left: .5em;
+    font-size: 1.2em;
+}

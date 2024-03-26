@@ -10,7 +10,7 @@ export const CardList = ({data, horizontal, oneLine, filter}: {
 }) => {
     return (
         <div className={s.cardList + ' ' + ((horizontal) ? s.horizontal : s.vertical) + ' ' + ((oneLine) ? s.oneLine : '')}>
-            { data.filter( show => show.name.toLowerCase().includes(filter) ).map(show => <Card data={show}></Card>) }
+            { data.filter( show => show.name.toLowerCase().includes(filter) ).map(show => <Card horizontal={horizontal} data={show}></Card>) }
         </div>
     );
 };

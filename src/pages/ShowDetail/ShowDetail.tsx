@@ -16,7 +16,18 @@ export const ShowDetail = () => {
     useEffect(() => {
         loadShowDetails();
         loadRecommendedShows();
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return (() => {
+            document.removeEventListener('keydown', handleKeyDown);
+        });
     }, [id]);
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+        if (!(event.key == ' ')) return;
+        alert('Tu as appuyé sur espace !');
+    };
 
     const loadShowDetails = async () => {
         const details = await MovieAPI.fetchShowById(id!);
@@ -40,7 +51,7 @@ export const ShowDetail = () => {
         return (
             <div className={s.details}>
                 <div className={s.detailsTitle}>{showDetail.name}</div>
-                {/* <Stars max={10} rating={10} /> */}
+                <Stars max={10} rating={showDetail.vote_average} voteCount={showDetail.vote_count} />
                 <div className={s.detailsOverview}>{showDetail.overview}</div>
             </div>
         )
@@ -53,7 +64,6 @@ export const ShowDetail = () => {
 
     const renderRecommendedShows = () => {
         if (!recommendedShows) return 'No recommendations found!';
-
 
         return (
             <div className={s.recommended}>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { MovieAPI } from '../../api/movie-api';
 import { CardList } from '../../components/CardList/CardList';
 import { Header } from '../../components/Header/Header';
+import { DarkModeProvider, useDarkMode } from '../../contexts/DarkMode/DarkMode';
 import { Show } from '../../types/show';
 import s from './HomePage.module.css';
 
@@ -9,6 +10,8 @@ export const HomePage = () => {
     const [shows, setShows] = useState<Show[]>([]);
     const [searchString, setSearchString] = useState<string>('');
     const [filterString, setFilterString] = useState<string>('');
+
+    const {isDarkMode, setIsDarkMode} = useDarkMode();
 
     useEffect(() => {
         loadPopularShows();
@@ -44,9 +47,11 @@ export const HomePage = () => {
     }
 
     return (
-        <div className={s.homeWrapper}>
-            <Header onSearchAction={updateShows} onChangeAction={updateQuery} onFilterAction={updateFilter} showSearchBar={true}></Header>
-            <CardList data={shows} horizontal={false} oneLine={false} filter={filterString}></CardList>
-        </div>
+        <DarkModeProvider>
+            <div className={s.homeWrapper + ' ' + (isDarkMode ? s.dark : 'hey')}>
+                <Header onSearchAction={updateShows} onChangeAction={updateQuery} onFilterAction={updateFilter} showSearchBar={true}></Header>
+                <CardList data={shows} horizontal={false} oneLine={false} filter={filterString}></CardList>
+            </div>
+        </DarkModeProvider>
     );
 }

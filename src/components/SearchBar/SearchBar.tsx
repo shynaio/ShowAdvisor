@@ -1,4 +1,6 @@
+import * as React from "react";
 import { useRef } from "react";
+import { IconType } from "react-icons";
 import s from './SearchBar.module.css';
 
 export const SearchBar = (
@@ -6,7 +8,7 @@ export const SearchBar = (
         onSubmit: (() => void) | undefined,
         onChange: ((value: string) => void) | undefined
         placeholder: string,
-        icon: string | undefined
+        icon: IconType
     }
 ) => {
     const textInput = useRef<HTMLInputElement>(null);
@@ -15,17 +17,17 @@ export const SearchBar = (
         onChange?.(textInput.current?.value!);
     };
 
+    const submit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        onSubmit?.();
+    };
+
     return (
-        <div>
-            <div className={s.searchbarWrapper}>
-                {
-                    icon && (
-                        <img src={icon}/>
-                    )
-                }
-                <input ref={textInput} type='text' placeholder={placeholder} onChange={changeFunction}></input>
-            </div>
-            <button onClick={onSubmit}>Go!</button>
+        <div className={s.searchbarWrapper}>
+            <form className={s.formWrapper} onSubmit={submit}>
+                <span className={s.iconContainer}>{ icon && React.createElement(icon) }</span>
+                <input className={s.input} ref={textInput} type='text' placeholder={placeholder} onChange={changeFunction} />
+            </form>
         </div>
-    )
+    );
 };
