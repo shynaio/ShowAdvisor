@@ -11,7 +11,7 @@ export const HomePage = () => {
     const [searchString, setSearchString] = useState<string>('');
     const [filterString, setFilterString] = useState<string>('');
 
-    const {isDarkMode, setIsDarkMode} = useDarkMode();
+    const {isDarkMode} = useDarkMode();
 
     useEffect(() => {
         loadPopularShows();
